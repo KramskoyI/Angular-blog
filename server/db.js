@@ -1,11 +1,10 @@
 const { Client } = require('pg');
-const { HOST, USER, PASSWORD, PORT } = require('./consts');
 
 const client = new Client({
-  host: HOST,
-  user: USER,
-  password: PASSWORD,
-  port: PORT
+  host: 'localhost',
+  user: 'student',
+  password: 'student',
+  port: '5432'
 });
 
 const createDB = async () => {
@@ -23,3 +22,4 @@ const createDB = async () => {
 createDB().then((result) => {
   console.log('DB has been created');
 });
+
