@@ -13,11 +13,11 @@ const action = (req, res) => {
   }).catch(err=>console.log(err));
 };
 
-const validators = [
-  body('email').isEmail()
-];
+// const validators = [
+//   body('email').isEmail()
+// ];
 
 module.exports = {
   action,
-  validators
+  // validators
 };

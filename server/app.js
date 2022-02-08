@@ -1,10 +1,10 @@
 const express = require('express');
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 const app = express();
-const urlencodedParser = express.urlencoded({extended: false});
-
+const urlencodedParser = express.urlencoded({extended: true});
+app.use(express.json())
 const auth = require('./routes/auth')
-
+const PORT = 3000
 // DB
 const sequelize = new Sequelize('blog', 'student', 'student', {
   dialect: 'postgres',
@@ -14,8 +14,8 @@ const sequelize = new Sequelize('blog', 'student', 'student', {
 
 //Server+Sequelize
 sequelize.sync().then(()=>{
-  app.listen(3000, function(){
-    console.log('Сервер ожидает подключения...');
+  app.listen(PORT, function(){
+    console.log(`Сервер на порту ${PORT}`);
   });
 }).catch(err=>console.log(err));
 
@@ -60,13 +60,7 @@ const Users = sequelize.define('users', {
 });
 Users.hasMany(Posts);
 
-// Tables created
-sequelize.sync({force:true}).then(()=>{
-  console.log("Tables have been created");
-}).catch(err=>console.log(err));
-
-
 
 //Routers
-app.use('/sign-up', urlencodedParser, auth);
-app.use('/sign-in', urlencodedParser, auth);
+app.use('/sign-up', auth);
+app.use('/sign-in', auth);
