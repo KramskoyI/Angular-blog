@@ -8,7 +8,11 @@ const action = async (req, res) => {
     email: req.body.email,
     password: req.body.password
   };
-  await res.json(user)
+  await User.findAll({user})
+    .then((data) => {
+        res.status(200).send(data);
+    })
+  
 };
 
 const validators = [
