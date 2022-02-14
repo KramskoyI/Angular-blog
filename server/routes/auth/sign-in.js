@@ -8,7 +8,7 @@ const action = async (req, res) => {
     email: req.body.email,
     password: req.body.password
   };
-  await User.findAll({user})
+  await User.findOne({user})
     .then((data) => {
         res.status(200).send(data);
     })
