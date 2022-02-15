@@ -17,9 +17,15 @@ const action = async (req, res) => {
     throw error;
   }
   const refreshToken = uuidv4();
-  const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '1800s' });
-  res.json({accessToken: accessToken, refreshToken:refreshToken});
-  
+  const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '900s' });
+  // res.json({accessToken: accessToken, refreshToken:refreshToken});
+  res.status(200).send({
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lasttName,
+    email: user.email,
+    accessToken: accessToken
+  });  
 };
 
 const validators = [
