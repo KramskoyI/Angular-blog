@@ -13,8 +13,7 @@ const action = async (req, res) => {
   };
   await User.create(user)
   .then(()=>{
-    console.log(user);
-    res.json(user)
+    res.json(user.email);
   })
   .catch(err=>console.log(err));
 };
