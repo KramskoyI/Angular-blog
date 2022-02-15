@@ -12,8 +12,12 @@ const action = async (req, res) => {
     password: req.body.password
   };
   await User.create(user)
-  .then(()=>{
-    res.json(user.email);
+  .then((data) => {
+    res.status(200).send({
+      firstName: data.firstName, 
+      lastName: data.lastName,
+      id: data.id
+    });
   })
   .catch(err=>console.log(err));
 };

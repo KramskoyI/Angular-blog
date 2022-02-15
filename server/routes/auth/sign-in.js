@@ -10,9 +10,13 @@ const action = async (req, res) => {
   };
   await User.findOne({user})
     .then((data) => {
-        res.status(200).send(data);
+        res.status(200).send({
+          firstName: data.firstName, 
+          lastName: data.lastName,
+          id: data.id
+        });
     })
-  
+    .catch(err=>console.log(err));
 };
 
 const validators = [
