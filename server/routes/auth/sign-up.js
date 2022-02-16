@@ -4,7 +4,6 @@ const { body } = require('express-validator');
 const { User } = require('../../../models')
 
 const action = async (req, res) => {
-  
   const user = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,

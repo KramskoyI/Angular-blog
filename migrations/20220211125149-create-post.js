@@ -20,16 +20,16 @@ module.exports = {
         type: Sequelize.STRING
 
       },
-      autorId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: User, 
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
+      // autorId: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: User, 
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'CASCADE',
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
