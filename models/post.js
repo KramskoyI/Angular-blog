@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'autorId', as: 'User' })
+      this.belongsTo(models.User, { foreignKey: 'id', as: 'user' })
     }
   }
   Post.init({
