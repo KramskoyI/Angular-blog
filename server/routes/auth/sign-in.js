@@ -13,11 +13,11 @@ const action = async (req, res) => {
         email: req.body.email
     }
   });
-  if (!user) {
-    const error = new Error();
-    error.status = 403;
-    throw error;
-  }
+  // if (!user) {
+  //   const error = new Error();
+  //   error.status = 403;
+  //   throw error;
+  // }
   const refreshToken = await uuidv4();
 
   const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '900s' });

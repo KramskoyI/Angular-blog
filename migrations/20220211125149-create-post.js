@@ -20,16 +20,10 @@ module.exports = {
         type: Sequelize.STRING
 
       },
-      // autorId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: User, 
-      //     key: 'id',
-      //   },
-      //   onUpdate: 'CASCADE',
-      //   onDelete: 'CASCADE',
-      // },
+      autorId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -39,8 +33,10 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+   
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Posts');
+   
   }
 };
