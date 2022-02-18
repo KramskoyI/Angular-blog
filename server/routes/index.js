@@ -5,5 +5,7 @@ const postsRouter = require('./posts');
 router
   .use('/auth', authRouter)
   .use('/posts', postsRouter);
+  
+  
 
 module.exports = router;
