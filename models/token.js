@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Token extends Model {
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'userId', as: 'User'})
+      Token.belongsTo(models.User, { foreignKey: 'userId', as: 'User'})
     }
   }
   Token.init({
