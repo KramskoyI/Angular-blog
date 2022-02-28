@@ -4,6 +4,7 @@ const signIn = require('./sign-in');
 const bodyParser = require('body-parser')
 const { validate } = require('../../utils');
 
+
 router
   .post('/sign-up', validate(signUp.validators), signUp.action)
   .post('/sign-in', validate(signIn.validators), signIn.action);

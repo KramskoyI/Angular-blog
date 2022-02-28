@@ -18,7 +18,7 @@ const action = async (req, res) => {
       id: data.id
     });
   })
-  .catch(err=>console.log(err));
+  .catch(err => console.log(err));
 };
 
 const validators = [

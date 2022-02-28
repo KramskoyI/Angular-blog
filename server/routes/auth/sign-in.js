@@ -13,11 +13,7 @@ const action = async (req, res) => {
         email: req.body.email
     }
   });
-  // if (!user) {
-  //   const error = new Error();
-  //   error.status = 403;
-  //   throw error;
-  // }
+ 
   const refreshToken = await uuidv4();
 
   const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '900s' });
@@ -26,7 +22,6 @@ const action = async (req, res) => {
     userId: user.id,
     refreshToken: refreshToken
   };
-  console.log('===>>>', tokenUser);
 
   if(tokenUser) {
     await Token.create(tokenUser)
@@ -37,6 +32,7 @@ const action = async (req, res) => {
   };
   
   res.cookie('refreshToken', refreshToken, { maxAge: 1800 * 1000, httpOnly: true })
+  
   res.json({
     id: user.id,
     firstName: user.firstName,
