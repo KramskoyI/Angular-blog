@@ -17,6 +17,7 @@ const action = async (req, res) => {
   const refreshToken = await uuidv4();
 
   const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '900s' });
+  const decoded = jwt.verify(accessToken, process.env.SECRET);
   
   const tokenUser = { 
     userId: user.id,
@@ -30,7 +31,8 @@ const action = async (req, res) => {
     })
     .catch(err=>console.log(err));
   };
-  
+
+  // const decoded = jwt.decode(accessToken, array('HS256'));
   res.cookie('refreshToken', refreshToken, { maxAge: 1800 * 1000, httpOnly: true })
   
   res.json({
@@ -38,6 +40,7 @@ const action = async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     accessToken: accessToken,
+    expiresIn: decoded.exp
   });  
 };
 
