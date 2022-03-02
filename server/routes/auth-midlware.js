@@ -7,14 +7,15 @@ const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
-        const token = authHeader.split(' ')[1];
-
+        const token = authHeader;
+        
         jwt.verify(token, process.env.SECRET, (err, user) => {
             if (err) {
                 return res.sendStatus(403);
             }
 
-            req.user = user;
+            req.body.autorId = user.id;
+            console.log(user.id)
             next();
         });
     } else {
