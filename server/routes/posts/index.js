@@ -6,8 +6,10 @@ const deletePost = require('./delete-post');
 const { validate } = require('../../utils');
 const { authenticateJWT } = require('../auth-midlware')
 router
-  .get('/:id', authenticateJWT, readPost.action)
+  .get('/add-post', authenticateJWT)
   .post('/add-post', validate(addPost.validators), authenticateJWT, addPost.action)
+
+  .get('/:id', authenticateJWT, readPost.action)
   .put('/:id', authenticateJWT, putPost.action)
   .delete('/:id', authenticateJWT, deletePost.action);
 

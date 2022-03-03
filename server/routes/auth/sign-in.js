@@ -13,10 +13,25 @@ const action = async (req, res) => {
         email: req.body.email
     }
   });
- 
+  
+  const dbRefreshToken = await Token.findOne({
+    where: { 
+        userId: user.id
+    }
+  });
+
+  if(dbRefreshToken) {
+    await Token.destroy({
+      where: {userId: user.id}
+    })
+    .then( () => {
+      res.status(200);
+    })
+  };
+  
   const refreshToken = await uuidv4();
 
-  const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '900s' });
+  const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '360s' });
   const decoded = jwt.verify(accessToken, process.env.SECRET);
   
   const tokenUser = { 
@@ -32,7 +47,7 @@ const action = async (req, res) => {
     .catch(err=>console.log(err));
   };
 
-  // const decoded = jwt.decode(accessToken, array('HS256'));
+  
   res.cookie('refreshToken', refreshToken, { maxAge: 1800 * 1000, httpOnly: true })
   
   res.json({
