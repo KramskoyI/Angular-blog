@@ -3,15 +3,18 @@ require('dotenv').config()
 const { body } = require('express-validator');
 const { Post } = require('../../../models')
 
+
+
 const action = async (req, res) => {
+  let filedata  = req.file ? req.file.filename : null
   
   const post = {
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image,
+    image: filedata,
     autorId: req.body.autorId
   };
-
+  console.log(post)
   await Post.create(post)
   .then(()=>{
     // console.log(post);

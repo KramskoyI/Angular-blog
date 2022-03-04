@@ -4,7 +4,7 @@ const express = require('express');
 const api = require('./routes');
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-
+const path = require('path')
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -13,6 +13,7 @@ app.use(cors({
 }))
 
 app.withCredentials = true;
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
