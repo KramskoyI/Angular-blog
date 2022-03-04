@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(cors({
   credentials: true,
 }))
+
 app.withCredentials = true;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
