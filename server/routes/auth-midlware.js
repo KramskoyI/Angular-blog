@@ -17,7 +17,7 @@ const authenticateJWT = (req, res, next) => {
                 
                 const user = User.findOne({where: {id: userId}})
                 
-                const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '360s' });
+                const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '3600s' });
                 res.json({
                     accessToken: accessToken,
                 }); 

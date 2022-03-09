@@ -4,7 +4,7 @@ const action = (req, res) => {
   Post.update(
     req.body,
     {
-      where: { id: req.body.id },
+      where: { id: req.params.id },
     },
     )
     .then((data) => {

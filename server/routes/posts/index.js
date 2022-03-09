@@ -7,7 +7,8 @@ const deletePost = require('./delete-post');
 const { validate } = require('../../utils');
 const { authenticateJWT } = require('../auth-midlware');
 
-const multer = require('multer')
+const multer = require('multer');
+
 const imagesBase = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images') 
@@ -16,14 +17,15 @@ const imagesBase = multer.diskStorage({
       cb(null, file.originalname)
     }
   });
-const upload = multer({storage: imagesBase})
+// const upload = multer({storage: imagesBase});
+
 router.use(multer({storage:imagesBase}).single('filedata'))
 
 router
   .get('/', getAllPosts.action)
   .post('/add-post', validate(addPost.validators), authenticateJWT, addPost.action)
 
-  .get('/:id', authenticateJWT, readPost.action)
+  .get('/:id', readPost.action)
   .put('/:id', authenticateJWT, putPost.action)
   .delete('/:id', authenticateJWT, deletePost.action);
 
