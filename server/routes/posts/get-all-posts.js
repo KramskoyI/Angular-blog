@@ -1,11 +1,17 @@
-const { Post, User } = require('../../../models')
+const { Post, User, Tag } = require('../../../models')
 
 const action = async (req, res) => {
   await Post.findAll({
-    include: {
+    include: [
+      {
         model: User,
         as: 'Users'
-      }
+      },
+      {
+        model: Tag,
+        as: 'Tag'
+      },
+    ]
   })
   .then((data)=>{
     const posts = data;
