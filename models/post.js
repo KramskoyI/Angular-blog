@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Post.belongsTo(models.User, { foreignKey: 'autorId', as: 'Users' });
       Post.hasMany(models.Tag, { foreignKey: 'postId', as:'Tag'});
-      
+      Post.hasMany(models.Like, { foreignKey: 'postNum', as:'Like'});
     }
   }
   Post.init({
@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     autorId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    
   }, {
     sequelize,
     modelName: 'Post',

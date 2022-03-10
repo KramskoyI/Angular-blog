@@ -3,13 +3,11 @@ require('dotenv').config()
 const { body } = require('express-validator');
 const { Post, Tag } = require('../../../models')
 
-
-
 const action = async (req, res) => {
   let filedata  = req.file ? req.file.filename : null
   
   const tag = req.body.tag;
-  const arrTags = tag.split(',')
+  const arrTags = tag.split(',');
 
   const post = {
     title: req.body.title,
@@ -18,6 +16,7 @@ const action = async (req, res) => {
     autorId: req.body.autorId
   };
   
+  console.log(post, tag)
   
   const postDb = await Post.create(post) // post.id ===>> is post id
   .then((post)=>{

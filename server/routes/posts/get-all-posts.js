@@ -1,4 +1,4 @@
-const { Post, User, Tag } = require('../../../models')
+const { Post, User, Tag, Like } = require('../../../models')
 
 const action = async (req, res) => {
   await Post.findAll({
@@ -10,6 +10,10 @@ const action = async (req, res) => {
       {
         model: Tag,
         as: 'Tag'
+      },
+      {
+        model: Like,
+        as: 'Like'
       },
     ]
   })
