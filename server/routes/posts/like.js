@@ -19,15 +19,15 @@ const action = async (req, res) => {
   if(likeF){
     await Like.destroy({
       where: [
-        { userNum: req.body.userNum},
-        {postNum: req.body.postNum}
+        { userNum: req.body.userNum },
+        { postNum: req.body.postNum }
       ]
     })
     .then((data) => {
       res.sendStatus(200);
     })
   } else {
-    await Like.create(like) // post.id ===>> is post id
+    await Like.create(like) 
     .then(()=>{
       res.send(like)
     })
