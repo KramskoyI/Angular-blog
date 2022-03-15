@@ -1,4 +1,4 @@
-const { Post, User, Tag } = require('../../../models')
+const { Post, User, Tag, Like } = require('../../../models')
 
 const action = (req, res) => {
   const id = req.params.id;
@@ -13,6 +13,10 @@ const action = (req, res) => {
       {
         model: Tag,
         as: 'Tag'
+      },
+      {
+        model: Like,
+        as: 'Like'
       },
     ]
   })
