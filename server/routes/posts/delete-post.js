@@ -5,7 +5,7 @@ const action = (req, res) => {
         where: { id: req.params.id},
       })
       .then((data) => {
-        res.sendStatus(200);
+        res.status(200).end();
       })
       .catch(() => {
         res.status(500);

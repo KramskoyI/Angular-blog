@@ -8,32 +8,31 @@ const action = async (req, res) => {
   };
   
   
-  const likeF = await Like.findOne({
+  const likeDB = await Like.findOne({
     where: [
       { userNum: req.body.userNum},
-      {postNum: req.body.postNum}
+      { postNum: req.body.postNum}
     ]
   })
-  
-  console.log('like=>', like, 'likeF=>',likeF)
-  if(likeF){
+ 
+  if(likeDB){
     await Like.destroy({
       where: [
         { userNum: req.body.userNum },
         { postNum: req.body.postNum }
       ]
     })
-    .then((data) => {
-      res.sendStatus(200);
+    .then(() => {
+      res.status(200).end();
     })
+    
   } else {
     await Like.create(like) 
     .then(()=>{
       res.send(like)
     })
+    
   }
-  
-  
 };
 
 module.exports = {

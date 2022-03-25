@@ -16,14 +16,11 @@ const action = async (req, res) => {
     autorId: req.body.autorId
   };
   
-  console.log(post, tag)
-  
   const postDb = await Post.create(post) // post.id ===>> is post id
   .then((post)=>{
     res.send(post)
     return post
   })
-  console.log(postDb.id)
 
   for (let i = 0; i < arrTags.length; i++) {
     let tagOne = {

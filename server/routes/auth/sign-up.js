@@ -1,14 +1,16 @@
 require('dotenv').config()
 
 const { body } = require('express-validator');
-const { User } = require('../../../models')
+const { User } = require('../../../models'); 
+const bcrypt = require('bcrypt');
 
 const action = async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
   const user = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: req.body.password
+    password: hashedPassword
   };
   await User.create(user)
   .then((data) => {

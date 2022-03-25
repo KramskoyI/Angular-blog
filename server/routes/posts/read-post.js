@@ -2,7 +2,6 @@ const { Post, User, Tag, Like } = require('../../../models')
 
 const action = (req, res) => {
   const id = req.params.id;
-  console.log('this is ID====>>>>',id)
   Post.findOne({
     where: {id: id},
     include: [
