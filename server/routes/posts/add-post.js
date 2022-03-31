@@ -1,18 +1,35 @@
 require('dotenv').config()
 
+const fs = require("fs");
 const { body } = require('express-validator');
 const { Post, Tag } = require('../../../models')
 
+
 const action = async (req, res) => {
-  let filedata  = req.file ? req.file.filename : null
   
+  
+  const data = req.body.image;
+  
+  
+
+  const base64Data = data.replace( /^data:image\/jpeg;base64,/, "");
+  const file = req.body.nameImage
+  fs.writeFile( file, base64Data, 'base64', function(err) {
+    console.log(err);
+  });
+  
+  fs.rename( file, `../../public/image/${file}`, err => {
+    if(err) throw err; // не удалось переместить файл
+
+    console.log('Файл успешно перемещён', file);
+  });
   const tag = req.body.tag;
   const arrTags = tag.split(',');
 
   const post = {
     title: req.body.title,
     content: req.body.content,
-    image: filedata,
+    image: file,
     autorId: req.body.autorId
   };
   
