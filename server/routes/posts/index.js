@@ -9,19 +9,19 @@ const allLike = require('./all-like')
 const { validate } = require('../../utils');
 const { authenticateJWT } = require('../auth-midlware');
 
-const multer = require('multer');
+// const multer = require('multer');
 
-const imagesBase = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images') 
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.originalname)
-    }
-});
+// const imagesBase = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'public/images') 
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, file.originalname)
+//     }
+// });
 // const upload = multer({storage: imagesBase});
 
-router.use(multer({storage:imagesBase}).single('filedata'))
+// router.use(multer({storage:imagesBase}).single('filedata'))
 
 router
   .get('/', getAllPosts.action)
