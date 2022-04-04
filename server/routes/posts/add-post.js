@@ -21,8 +21,6 @@ const action = async (req, res) => {
       console.log('Файл успешно перемещён');
     });
     
-    
-
     const post = {
       title: req.body.title,
       content: req.body.content,
