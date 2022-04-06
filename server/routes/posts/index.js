@@ -8,7 +8,7 @@ const like = require('./like');
 const allLike = require('./all-like')
 const { validate } = require('../../utils');
 const { authenticateJWT } = require('../auth-midlware');
-
+const postsTag = require('./posts-tag')
 // const multer = require('multer');
 
 // const imagesBase = multer.diskStorage({
@@ -29,6 +29,8 @@ router
   .get('/all-like/:id',  allLike.action)
   .post('/like',  like.action)
   .get('/:id', readPost.action)
+
+  .get('/tag/:tag', postsTag.action)
   .put('/:id', authenticateJWT, putPost.action)
   .delete('/:id', authenticateJWT, deletePost.action);
 
