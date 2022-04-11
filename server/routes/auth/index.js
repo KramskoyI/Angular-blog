@@ -3,10 +3,11 @@ const signUp = require('./sign-up');
 const signIn = require('./sign-in');
 const getUser = require('./get-user');
 const refreshToken = require('./refresh-token');
-const bodyParser = require('body-parser');
+
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oidc');
+
 const { validate } = require('../../utils');
+require('./google');
 
 
 router
@@ -14,12 +15,15 @@ router
   .get('/', getUser.action)
   .post('/sign-up', validate(signUp.validators), signUp.action)
   .post('/sign-in', validate(signIn.validators), signIn.action)
-  .get('/google', passport.authenticate('google', { scope: ['profile'] }))
-  .get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' })
-  // ,
-  //   function(req, res) {
-  //     // Successful authentication, redirect home.
-  //     res.redirect('/');
-  //   }
-  );
+  .get('/google', passport.authenticate('google', { scope: ['email', 'profile'] } ) )
+  .get('/google/callback', passport.authenticate('google', {
+    successRedirect: '../protected',
+    failureRedirect:'/fail'
+  }))
+  .get('/protected', (res, req)=> {
+    req.send('hello my dear frend!')
+  })
+  .get('/fail', (res, req)=> {
+    req.send('fail!!!')
+  })
 module.exports = router;
