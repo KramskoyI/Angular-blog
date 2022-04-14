@@ -10,16 +10,16 @@ const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000;
 const passport = require('passport');
 const session = require('express-session');
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'cats',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  
 }))
 
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cors(
   {credentials: true}
 ));
@@ -28,6 +28,7 @@ app.use(cors(
 //                     '*'];
 app.use( bodyParser({limit: '50mb'}) );
 app.use(function(req, res, next) {
+  req.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');

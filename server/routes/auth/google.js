@@ -1,8 +1,10 @@
 
 const passport = require('passport');
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
 const GOOGLE_CLIENT_ID = '589978172241-uo2hrci9p7eat7ernc0ltc537igb0egp.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = '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';
+
 passport.use(new GoogleStrategy( 
     {
         clientID: GOOGLE_CLIENT_ID,
@@ -12,6 +14,7 @@ passport.use(new GoogleStrategy(
     },
     function(request, accessToken, refreshToken, profile, done) {
         return done(null, profile);
+        
     }
   
 ));

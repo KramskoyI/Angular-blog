@@ -9,6 +9,9 @@ const passport = require('passport');
 const { validate } = require('../../utils');
 require('./google');
 
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
 
 router
   .get('/refresh-token', refreshToken.action)
@@ -18,10 +21,12 @@ router
   .get('/google', passport.authenticate('google', { scope: ['email', 'profile'] } ) )
   .get('/google/callback', passport.authenticate('google', {
     successRedirect: '../protected',
-    failureRedirect:'/fail'
+    failureRedirect:'/fail',
+      
   }))
-  .get('/protected', (res, req)=> {
-    req.send('hello my dear frend!')
+  .get('/protected', isLoggedIn, (req, res)=> {
+    console.log(req.user)
+    res.send(`Hello ${req.user.email}, ${req.user.name.givenName}, ${req.user.name.familyName}`);
   })
   .get('/fail', (res, req)=> {
     req.send('fail!!!')
