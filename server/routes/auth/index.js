@@ -3,6 +3,8 @@ const signUp = require('./sign-up');
 const signIn = require('./sign-in');
 const getUser = require('./get-user');
 const refreshToken = require('./refresh-token');
+const { User } = require('../../../models'); 
+const bcrypt = require('bcrypt');
 
 const passport = require('passport');
 
@@ -24,9 +26,22 @@ router
     failureRedirect:'/fail',
       
   }))
-  .get('/protected', isLoggedIn, (req, res)=> {
+  .get('/protected', isLoggedIn, async (req, res)=> {
+    const password = 'google';
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const user = {
+      firstName: req.user.name.givenName,
+      lastName: req.user.name.familyName,
+      email: req.user.email,
+      password: hashedPassword
+    };
+    await User.create(user)
+    .then((data) => {
+      res.status(200)
+    })
+    .catch(err => console.log(err));
     console.log(req.user)
-    res.send(`Hello ${req.user.email}, ${req.user.name.givenName}, ${req.user.name.familyName}`);
+    res.send(`Hello ${req.user.email}, you can LogIn to our BLOG!`);
   })
   .get('/fail', (res, req)=> {
     req.send('fail!!!')
