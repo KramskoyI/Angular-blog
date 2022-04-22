@@ -7,7 +7,8 @@
     "run": "node app.js",
     "start": "nodemon ./server/app.js",
     "lint": "eslint . --ext .js",
-    "db": "node ./server/db.js"
+    "db": "node ./server/db.js",
+    "test": "mocha ./server/app.test.js"
   },
   "keywords": [],
   "author": "",
@@ -37,7 +38,9 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-rallycoding": "^3.2.0",
     "eslint-plugin-import": "^2.25.4",
+    "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.2"
   }
 }

@@ -6,12 +6,9 @@ const { User } = require('../../../models');
 const { Token } = require('../../../models');
 
 const action = async (req, res) => {
-    
     const authHeader = req.headers.authorization;
-        
-     if (authHeader) {
+    if (authHeader) {
         const token = authHeader;
-    
         jwt.verify(token, process.env.SECRET, (err, user) => {
             if (err) {
                 const oldTokenMas = authHeader.split('.');
@@ -21,14 +18,11 @@ const action = async (req, res) => {
                 const accessToken = jwt.sign({id: user.id}, process.env.SECRET, { expiresIn: '660s' });
                 res.json({ accessToken: accessToken, userId: userId })
             } 
-                
         });
     } else {
         res.sendStatus(401);
     }
 };
-
-
 
 module.exports = {
   action,

@@ -7,7 +7,6 @@ const action = async (req, res) => {
     postNum: req.body.postNum
   };
   
-  
   const likeDB = await Like.findOne({
     where: [
       { userNum: req.body.userNum},

@@ -18,7 +18,6 @@ const action = async (req, res) => {
             model: Tag,
             as: 'Tag'
           },
-
         ]
       },
     ]
@@ -29,11 +28,6 @@ const action = async (req, res) => {
     .catch((err) => {
       res.send('ERROR, not found');
     });
-    
-    
-    
-  
-    
 };
 
 module.exports = {

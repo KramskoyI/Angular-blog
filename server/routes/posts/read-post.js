@@ -19,13 +19,12 @@ const action = (req, res) => {
       },
     ]
   })
-      .then((data) => {
-      res.send(data);
-      })
-      .catch((err) => {
-      res.send('ERROR, not found');
-      });
-  
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
+    res.send('ERROR, not found');
+  });
 };
 
 module.exports = {

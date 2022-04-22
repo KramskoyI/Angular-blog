@@ -5,7 +5,6 @@ const getUser = require('./get-user');
 const refreshToken = require('./refresh-token');
 const { User } = require('../../../models'); 
 const bcrypt = require('bcrypt');
-
 const passport = require('passport');
 
 const { validate } = require('../../utils');

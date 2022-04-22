@@ -13,11 +13,7 @@ const action = async (req, res) => {
         email: req.body.email
     }
   });
-  // const passwordDb = await bcrypt.compare(password, user.password)
-  // const passwordForm = req.body.password;
-  // if(passwordDb == passwordForm) {
-    
-  // }
+  
   await bcrypt.compare(req.body.password, user.password, async function(err, results){
     if(err){
         throw new Error(err)

@@ -12,7 +12,7 @@ const client = new Client({
 const createDB = async () => {
   try {
     await client.connect();
-    await client.query(`CREATE DATABASE $DB_NAME`);
+    await client.query(`CREATE DATABASE ${DB_NAME}`);
   } catch (error) {
     console.log(error);
     return false;

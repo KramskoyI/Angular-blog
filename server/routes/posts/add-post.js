@@ -3,7 +3,6 @@ require('dotenv').config()
 const fs = require("fs");
 const { body } = require('express-validator');
 const { Post, Tag } = require('../../../models')
-const path = require('path');
 
 const action = async (req, res) => {
   const data = req.body.image;
@@ -74,13 +73,7 @@ const action = async (req, res) => {
           })
       }
     }
-
   }
-  
-
-  
-  
-  
 };
 
 
