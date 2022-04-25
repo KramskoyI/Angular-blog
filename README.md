@@ -14,3 +14,9 @@ For start:
 - npx sequelize-cli db:migrate
 - npm run start
 
+For test:
+Enter the following commands in term:
+1. Install node js, npm, postgresql.
+Enter the following commands in term:
+- npm i
+- npm run test
