@@ -1,18 +1,16 @@
 const { Client } = require('pg');
 
- const DB_NAME = 'blog';
-
 const client = new Client({
   host: 'localhost',
-  user: 'student',
-  password: 'student',
-  port: '5432'
+  user: process.env.DB_USER_NAME,
+  password: process.env.PASSWORD,
+  port: process.env.DB_PORT
 });
 
 const createDB = async () => {
   try {
     await client.connect();
-    await client.query(`CREATE DATABASE ${DB_NAME}`);
+    await client.query(`CREATE DATABASE blog`);
   } catch (error) {
     console.log(error);
     return false;
